@@ -29,7 +29,9 @@
                     return posts.$add(post).then(function (ref) {
                         var postId = ref.name();
 
-                        userRef.child("posts").child(postId).set(postId);
+                        /*jshint camelcase: false */
+                        userRef.child(user.md5_hash).child("posts").child(postId).set(postId);
+                        /*jshint camelcase: true */
 
                         return postId;
                     });
@@ -39,14 +41,17 @@
                 return $firebase(reference.child(postId)).$asObject();
             },
             remove: function (postId) {
-                var userPost;
+                var userPost, user;
 
                 if (User.signedIn()) {
                     userPost = $firebase(userRef.child("posts")).$asObject();
+                    user = User.getCurrent();
 
                     userPost.$loaded().then(function () {
                         posts.$remove(postId).then(function () {
-                            userRef.child("posts").child(postId.$id).remove();
+                            /*jshint camelcase: false */
+                            userRef.child(user.md5_hash).child("posts").child(postId.$id).remove();
+                            /*jshint camelcase: true */
                         });
                     });
                 }
