@@ -26,9 +26,11 @@
 
             query.$loaded(function (result) {
                 result.some(function (data) {
+                    /*jshint camelcase: false */
                     if (data.md5_hash === authUser.md5_hash) {
                         setCurrentUser(data);
                     }
+                    /*jshint camelcase: true */
                 });
             });
         });
