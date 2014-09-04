@@ -9,7 +9,7 @@
      * # PostsCtrl
      * Controller of the angNewsApp
      */
-    app.controller("PostsCtrl", function ($scope, $location, Post) {
+    app.controller("PostsCtrl", function ($scope, Post) {
         $scope.posts = Post.all;
 
         $scope.deletePost = function (post) {

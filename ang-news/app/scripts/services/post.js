@@ -58,14 +58,15 @@
             },
             addComment: function (postId, comment) {
                 if (User.signedIn()) {
-                    var user = User.getCurrent();
+                    var user = User.getCurrent(), postComments;
 
+                    postComments = $firebase(reference.child(postId).child("comments"));
                     comment.username = user.username;
                     comment.postId = postId;
 
-                    posts.$child(postId).$child("comments").$add(comment).then(function (reference) {
-                        User.$child("comments").$child(reference.name()).$set({
-                            id: reference.name,
+                    postComments.$push(comment).then(function (data) {
+                        userRef.child("comments").child(data.name()).set({
+                            id: data.name(),
                             postId: postId
                         });
                     });
