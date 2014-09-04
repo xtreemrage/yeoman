@@ -22,15 +22,13 @@
 
         /*jslint unparam: true*/
         $rootScope.$on("$firebaseSimpleLogin:login", function (event, authUser) {
-            var query = $firebase(reference).$asObject();
+            var query = $firebase(reference).$asArray();
 
             query.$loaded(function (result) {
-                angular.forEach(result, function (key) {
-                    /*jshint camelcase: false */
-                    if (key.md5_hash === authUser.md5_hash) {
-                        setCurrentUser(key);
+                result.some(function (data) {
+                    if (data.md5_hash === authUser.md5_hash) {
+                        setCurrentUser(data);
                     }
-                    /*jshint camelcase: true */
                 });
             });
         });
