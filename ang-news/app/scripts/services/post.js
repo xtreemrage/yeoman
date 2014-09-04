@@ -10,10 +10,11 @@
      * Factory in the angNewsApp.
      */
     app.factory("Post", function ($firebase, FIREBASE_URL, User) {
-        var reference, posts, Post;
+        var reference, posts, Post, userRef;
 
         reference = new Firebase(FIREBASE_URL + "posts");
         posts = $firebase(reference).$asArray();
+        userRef = new Firebase(FIREBASE_URL + "users");
 
         Post = {
             all: posts,
@@ -25,10 +26,10 @@
 
                     post.owner = user.username;
 
-                    return posts.$add(post).then(function () {
-                        var postId = reference.name();
+                    return posts.$add(post).then(function (ref) {
+                        var postId = ref.name();
 
-                        user.$child("posts").$child(postId).$set(postId);
+                        userRef.child("posts").child(postId).set(postId);
 
                         return postId;
                     });
@@ -38,16 +39,29 @@
                 return $firebase(reference.child(postId)).$asObject();
             },
             remove: function (postId) {
-                var post;
+                var userPost;
 
                 if (User.signedIn()) {
-                    post = Post.find(postId);
+                    userPost = $firebase(userRef.child("posts")).$asObject();
 
-                    post.$on("loaded", function () {
-                        var user = User.findByUsername(post.owner);
-
+                    userPost.$loaded().then(function () {
                         posts.$remove(postId).then(function () {
-                            user.$child("posts").$remove(postId);
+                            userRef.child("posts").child(postId.$id).remove();
+                        });
+                    });
+                }
+            },
+            addComment: function (postId, comment) {
+                if (User.signedIn()) {
+                    var user = User.getCurrent();
+
+                    comment.username = user.username;
+                    comment.postId = postId;
+
+                    posts.$child(postId).$child("comments").$add(comment).then(function (reference) {
+                        User.$child("comments").$child(reference.name()).$set({
+                            id: reference.name,
+                            postId: postId
                         });
                     });
                 }
