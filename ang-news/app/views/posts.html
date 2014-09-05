@@ -1,5 +1,5 @@
 <div class="container posts-page">
-    <div class="post row" ng-repeat="post in posts">
+    <div class="post row" ng-repeat="(postIndex, post) in posts">
         <div class="col-xs-1">
 
         </div>
@@ -14,7 +14,7 @@
         <div>
             <span>submitted by <a href="#/users/{{post.owner}}">{{post.owner}}</a></span>
             <a href="#/posts/{{post.$id}}">comments</a>
-            <a ng-click="deletePost(post)" ng-show="signedIn() && (post.owner === currentUser.username)">delete</a>
+            <a ng-click="deletePost(postIndex, post.$id)" ng-show="signedIn() && (post.owner === currentUser.username)">delete</a>
         </div>
         <div class="col-md-2">
 

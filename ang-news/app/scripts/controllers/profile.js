@@ -10,17 +10,23 @@
      * Controller of the angNewsApp
      */
     app.controller("ProfileCtrl", function ($scope, $routeParams, Post, User) {
+        var postsRef;
+
         $scope.user = User.findByUsername($routeParams.username);
+
+        postsRef = Post.all;
 
         function populatePosts() {
             $scope.posts = {};
 
             angular.forEach($scope.user.posts, function (postId) {
-                $scope.posts[postId] = Post.find(postId);
+                var index;
+                index = parseInt(postsRef.$indexFor(postId), 10);
+                $scope.posts[index] = Post.find(postId);
             });
         }
 
-        $scope.user.$loaded().then(function () {
+        postsRef.$loaded().then(function () {
             populatePosts();
         });
     });

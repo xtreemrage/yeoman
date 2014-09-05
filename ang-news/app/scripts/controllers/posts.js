@@ -14,8 +14,8 @@
             $scope.posts = Post.all;
         }
 
-        $scope.deletePost = function (post) {
-            Post.remove(post);
+        $scope.deletePost = function (postIndex, postId) {
+            Post.remove(postIndex, postId);
         };
     });
 }(news));

@@ -22,16 +22,14 @@
                 var user;
 
                 if (User.signedIn()) {
-                    user = User.getCurrent();
+                    user = User.findByUsername(User.getCurrent());
 
-                    post.owner = user.username;
+                    post.owner = user.$id;
 
                     return posts.$add(post).then(function (ref) {
                         var postId = ref.name();
 
-                        /*jshint camelcase: false */
                         userRef.child(user.$id).child("posts").child(postId).set(postId);
-                        /*jshint camelcase: true */
 
                         return postId;
                     });
@@ -40,18 +38,17 @@
             find: function (postId) {
                 return $firebase(reference.child(postId)).$asObject();
             },
-            remove: function (postId) {
-                var userPost, user;
+            remove: function (postIndex, postId) {
+                var userPost, user, parsedIndex;
 
                 if (User.signedIn()) {
                     userPost = $firebase(userRef.child("posts")).$asObject();
                     user = User.getCurrent();
+                    parsedIndex = parseInt(postIndex, 10);
 
                     userPost.$loaded().then(function () {
-                        posts.$remove(postId).then(function () {
-                            /*jshint camelcase: false */
-                            userRef.child(user.$id).child("posts").child(postId.$id).remove();
-                            /*jshint camelcase: true */
+                        posts.$remove(parsedIndex).then(function () {
+                            userRef.child(user.$id).child("posts").child(postId).remove();
                         });
                     });
                 }
