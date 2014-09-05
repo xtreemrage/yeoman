@@ -9,8 +9,10 @@
      * # PostsCtrl
      * Controller of the angNewsApp
      */
-    app.controller("PostsCtrl", function ($scope, Post) {
-        $scope.posts = Post.all;
+    app.controller("PostsCtrl", function ($scope, $location, Post) {
+        if ($location.path() === "/") {
+            $scope.posts = Post.all;
+        }
 
         $scope.deletePost = function (post) {
             Post.remove(post);

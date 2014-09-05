@@ -43,7 +43,7 @@
         User = {
             create: function (authUser, username) {
                 /*jshint camelcase: false */
-                users[authUser.md5_hash] = {
+                users[username] = {
                     md5_hash: authUser.md5_hash,
                     username: username,
                     $priority: authUser.uid
@@ -53,10 +53,12 @@
                     setCurrentUser(users);
                 });
             },
-            findByUsername: function (users) {
-                if (users) {
-                    $log.debug(users);
-                    return users;
+            findByUsername: function (userDef) {
+                if (userDef) {
+                    var user;
+                    $log.debug(userDef);
+                    user = userDef.$id || userDef;
+                    return $firebase(reference.child(user)).$asObject();
                 }
             },
             getCurrent: function () {

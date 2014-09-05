@@ -30,7 +30,7 @@
                         var postId = ref.name();
 
                         /*jshint camelcase: false */
-                        userRef.child(user.md5_hash).child("posts").child(postId).set(postId);
+                        userRef.child(user.$id).child("posts").child(postId).set(postId);
                         /*jshint camelcase: true */
 
                         return postId;
@@ -50,7 +50,7 @@
                     userPost.$loaded().then(function () {
                         posts.$remove(postId).then(function () {
                             /*jshint camelcase: false */
-                            userRef.child(user.md5_hash).child("posts").child(postId.$id).remove();
+                            userRef.child(user.$id).child("posts").child(postId.$id).remove();
                             /*jshint camelcase: true */
                         });
                     });
