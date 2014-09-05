@@ -71,6 +71,17 @@
                         });
                     });
                 }
+            },
+            deleteComment: function (post, comment, commentId) {
+                if (User.signedIn()) {
+                    var postComments;
+
+                    postComments = $firebase(reference.child(post.$id).child("comments"));
+
+                    postComments.$remove(commentId).then(function () {
+                        userRef.child("comments").child(commentId).remove();
+                    });
+                }
             }
         };
 

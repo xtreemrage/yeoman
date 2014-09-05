@@ -16,5 +16,9 @@
             Post.addComment($routeParams.postId, $scope.comment);
             $scope.comment = "";
         };
+
+        $scope.removeComment = function (comment, commentId) {
+            Post.deleteComment($scope.post, comment, commentId);
+        };
     });
 }(news));
