@@ -12,6 +12,8 @@
     app.controller("ProfileCtrl", function ($scope, $routeParams, Post, User) {
         var postsRef;
 
+        $scope.commentedPosts = {};
+
         $scope.user = User.findByUsername($routeParams.username);
 
         postsRef = Post.all;
@@ -26,8 +28,23 @@
             });
         }
 
+        function populateComments() {
+            $scope.comments = {};
+
+            angular.forEach($scope.user.comments, function (comment) {
+                var post = Post.find(comment.postId);
+
+                post.$loaded().then(function () {
+                    $scope.comments[comment.id] = post.comments[comment.id];
+
+                    $scope.commentedPosts[comment.postId] = post;
+                });
+            });
+        }
+
         postsRef.$loaded().then(function () {
             populatePosts();
+            populateComments();
         });
     });
 }(news));

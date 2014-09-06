@@ -62,7 +62,7 @@
                     comment.postId = postId;
 
                     postComments.$push(comment).then(function (data) {
-                        userRef.child("comments").child(data.name()).set({
+                        userRef.child(user.$id).child("comments").child(data.name()).set({
                             id: data.name(),
                             postId: postId
                         });
@@ -71,12 +71,13 @@
             },
             deleteComment: function (post, comment, commentId) {
                 if (User.signedIn()) {
-                    var postComments;
+                    var postComments, user;
+                    user = User.getCurrent();
 
                     postComments = $firebase(reference.child(post.$id).child("comments"));
 
                     postComments.$remove(commentId).then(function () {
-                        userRef.child("comments").child(commentId).remove();
+                        userRef.child(user.$id).child("comments").child(commentId).remove();
                     });
                 }
             }
