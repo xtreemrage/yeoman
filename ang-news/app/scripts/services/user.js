@@ -58,7 +58,21 @@
                     var user;
                     $log.debug(userDef);
                     user = userDef.$id || userDef;
+
                     return $firebase(reference.child(user)).$asObject();
+                }
+            },
+            findUsername: function (username) {
+                if (username) {
+                    var isFound = false;
+
+                    angular.forEach(users, function (value, key) {
+                        if (key === username) {
+                            isFound = true;
+                        }
+                    });
+
+                    return isFound;
                 }
             },
             getCurrent: function () {
