@@ -26,6 +26,6 @@ De mytodo en ang-news zijn gebasseerd op wat yeoman genereerd.
 -   Node/NPM heeft men nodig.
 -   Installeer yomean: `npm install -g yo`
     -   Als je NPM versie hoger is dan 1.2.10, dan wordt grunt en bower automatisch geinstalleerd, anders moet men deze handmatig installeren.
--   Zodra alles correct geinstalleerd/gecloned is: cd naar de juiste folder en run de volgende commands `bower install` en `npm install`
+-   Zodra alles correct geinstalleerd/gecloned is: cd naar de juiste folder en run de volgende commands `npm install` en daarna `bower install`
 -   Server runnen: `grunt serve`
 
