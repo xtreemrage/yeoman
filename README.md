@@ -18,12 +18,21 @@ The Yeoman workflow is comprised of three types of tools for improving your prod
 
 ##Gegenereerde projecten
 
-Er zijn in totaal 4 projecten op dit moment, 3 AgnularJS projecten en 1 openui5 project. Yeomangenerated and openui5generated zijn de projecten die met een yeoman generator zo (stock) worden aangemaakt.
-De mytodo en ang-news zijn gebasseerd op wat yeoman genereerd.
+Ik heb 4 projecten gegenereerd, 3 AgnularJS projecten en 1 openui5 project.
+Openui5:
+-   openui5generated: Project alleen aangemaakt met de generator
+
+Angular:
+-   yeomangenerated: Project alleen aangemaakt met de generator
+-   [mytodo](http://yeoman.io/codelab.html): todo appje icm localstorage
+-   ang-news: men kan nieuws links posten icm firebase
+
+##Randvoorwaarde
+
+-   node/npm >= v1.2.10
 
 ##Installatie
 
--   Node/NPM heeft men nodig.
 -   Installeer yomean: `npm install -g yo`
     -   Als je NPM versie hoger is dan 1.2.10, dan wordt grunt en bower automatisch geinstalleerd, anders moet men deze handmatig installeren.
 -   Zodra alles correct geinstalleerd/gecloned is: cd naar de juiste directory en run de volgende commands `npm install` en `bower install`
