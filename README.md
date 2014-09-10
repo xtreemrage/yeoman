@@ -20,12 +20,14 @@ The Yeoman workflow is comprised of three types of tools for improving your prod
 
 Ik heb 4 projecten gegenereerd, 3 AgnularJS projecten en 1 openui5 project.
 Openui5:
+
 -   openui5generated: Project alleen aangemaakt met de generator
 
 Angular:
+
 -   yeomangenerated: Project alleen aangemaakt met de generator
--   [mytodo](http://yeoman.io/codelab.html): todo appje icm localstorage
--   ang-news: men kan nieuws links posten icm firebase
+-   [mytodo](http://yeoman.io/codelab.html): Aangemaakt met de generator - todo appje icm localstorage
+-   ang-news: Aangemaakt met de generator - men kan nieuws links posten icm firebase
 
 ##Randvoorwaarde
 
