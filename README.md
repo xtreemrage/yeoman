@@ -45,7 +45,7 @@ Angular:
 
 ##Zelf een project genereren
 
--   Eerst heb je de juiste generator nodig, deze kan je zoeken via `yo` command of via de [website](http://yeoman.io/generators/) zelf.
+-   Eerst heb je de juiste generator nodig, deze kan je zoeken via `yo` command of via de [yeoman website](http://yeoman.io/generators/) zelf.
 -   Zodra je deze hebt gevonden installeer je deze: `npm install -g generator-angular`
 -   Maak een nieuwe directory aan en ga er naar toe: `mkdir projectnaam && cd projectnaam`
 -   Run `yo angular appnaam`
