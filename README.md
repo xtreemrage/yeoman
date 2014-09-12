@@ -32,10 +32,20 @@ Angular:
 ##Randvoorwaarde
 
 -   node/npm >= v1.2.10
-
-##Installatie
-
+-   git
+-   commandline gebruiken
 -   Installeer yeoman: `npm install -g yo`
     -   Als je NPM versie hoger is dan 1.2.10, dan wordt grunt en bower automatisch geinstalleerd, anders moet men deze handmatig installeren.
+
+##De bovenstaande projecten uitproberen
+
 -   Zodra alles correct geinstalleerd/gecloned is: cd naar de juiste directory en run de volgende commands `npm install` en `bower install`
 -   Server runnen: `grunt serve`
+
+##Zelf een project genereren
+
+-   Eerst heb je de juiste generator nodig, deze kan je zoeken via `yo` command of via de [website](http://yeoman.io/generators/) zelf.
+-   Zodra je deze hebt gevonden installeer je deze: `npm install -g generator-angular`
+-   Maak een nieuwe directory aan en ga er naar toe: `mkdir projectnaam && cd projectnaam`
+-   Run `yo angular appnaam`
+-   Preview jou project: `grunt serve`
