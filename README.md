@@ -39,6 +39,7 @@ Angular:
 
 ##De bovenstaande projecten uitproberen
 
+-   Clone dit project
 -   Zodra alles correct geinstalleerd/gecloned is: cd naar de juiste directory en run de volgende commands `npm install` en `bower install`
 -   Server runnen: `grunt serve`
 
