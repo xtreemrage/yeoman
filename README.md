@@ -49,4 +49,5 @@ Angular:
 -   Zodra je deze hebt gevonden installeer je deze: `npm install -g generator-angular`
 -   Maak een nieuwe directory aan en ga er naar toe: `mkdir projectnaam && cd projectnaam`
 -   Run `yo angular appnaam`
+-   Beantwoord de vragen
 -   Preview jou project: `grunt serve`
